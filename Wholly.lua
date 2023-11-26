@@ -440,7 +440,6 @@
 --			Changes retail interface to 100005.
 --			Adds support group membership completion counts being exact (to support Dragon Isles Waygate quests).
 --		089 Changes Classic Wrath interface to 30401.
---		090 Changes retail interface to 100007.
 --
 --	Known Issues
 --
@@ -2509,8 +2508,10 @@ WorldMapFrame:AddDataProvider(self.mapPinsProvider)
 		_LoadDefaults = function(self)
 			local db = {}
 			db.appendRequiredLevel = true
+			db.buggedQuestsConsideredUnobtainable = true
 			db.defaultsLoaded = true
-			db.displaysBreadcrumbMessages = false
+			db.displaysBlizzardQuestTooltips = true
+			db.displaysBreadcrumbMessages = true
 			db.displaysBreadcrumbs = true
 			db.displaysDungeonQuests = true
 			db.displaysHolidaysAlways = true
@@ -2518,22 +2519,30 @@ WorldMapFrame:AddDataProvider(self.mapPinsProvider)
 			db.displaysMapPins = true
 			db.displaysMapPinsTurnin = true
 			db.displaysMapPinsTurninIncomplete = false
+			db.liveQuestCountUpdates = true
 			db.loadAchievementData = true
 			db.loadDateData = true
 			db.loadReputationData = true
 			db.prependsQuestLevel = true
+			db.showQuestCounts = true
 			db.showsAchievementCompletionColors = true
 			db.showsAnyPreviousRepeatableCompletions = true
+			db.showsCompletedQuests = true
+			db.showsHighLevelQuests = true
 			db.showsHolidayQuests = true
 			db.showsInLogQuestStatus = true
 			db.showsLegendaryQuests = true
 			db.showsLowLevelQuests = true
 			db.showsPetBattleQuests = true
 			db.showsPVPQuests = true
+			db.showsQuestsInLog = true
+			db.showsQuestsThatFailPrerequsites = true
+			db.showsUnobtainableQuests = true
 			db.showsWeeklyQuests = true
 			db.showsWorldQuests = true
 			db.updatesPanelWhenZoneChanges = true
 			db.updatesWorldMapOnZoneChange = true
+			db.useWidePanel = true
 			db.version = Wholly.versionNumber
 			WhollyDatabase = db
 			return db
@@ -3859,7 +3868,7 @@ end
 				WDB = self:_LoadDefaults()
 			end
 			if nil == WDB.currentSortingMode then
-				WDB.currentSortingMode = 1
+				WDB.currentSortingMode = 5
 			end
 			if nil == WDB.closedHeaders then
 				WDB.closedHeaders = {}
